@@ -1,0 +1,79 @@
+[
+    {
+        "id": "0996bded-4aca-4593-935c-15fd27252b71",
+        "quantity": 96,
+        "originId": "4bb6ed3f-0c39-4bf2-84e6-bffeb42c110a",
+        "createdAt": "2024-09-25 09:45:45.768",
+        "updatedAt": "2024-09-30 20:55:58.754"
+    },
+    {
+        "id": "0c3823ad-5f24-44ea-a9ed-d42c50a31189",
+        "quantity": 127,
+        "originId": "45b49cb2-e84a-4aea-b5da-ff2c8950854d",
+        "createdAt": "2024-09-28 21:50:35.323",
+        "updatedAt": "2024-09-28 21:53:25.012"
+    },
+    {
+        "id": "0fa0c9b7-11f6-4a53-99e1-e803678b0189",
+        "quantity": 75,
+        "originId": "2e22fcab-6896-4999-bcb8-3eae746250c7",
+        "createdAt": "2024-09-25 09:28:26.671",
+        "updatedAt": "2024-09-30 17:53:54.571"
+    },
+    {
+        "id": "1e7fdcd2-5be8-4374-a6ad-eb42c2ca7325",
+        "quantity": 17,
+        "originId": "c48bb4c9-b68b-4bb0-b0e7-ca68b700e4ae",
+        "createdAt": "2024-09-25 09:29:50.134",
+        "updatedAt": "2024-09-29 12:44:21.58"
+    },
+    {
+        "id": "4ea3c601-cb7d-4b0d-9c21-4fc80e6a5801",
+        "quantity": 0,
+        "originId": "2f066ce2-180a-4c71-a910-a4b48c7a2628",
+        "createdAt": "2024-09-25 10:03:35.949",
+        "updatedAt": "2024-09-25 10:03:35.949"
+    },
+    {
+        "id": "5518caea-3dff-47a1-892c-e4d28fea8af2",
+        "quantity": 238,
+        "originId": "9aecf87c-0b29-4cfb-ac11-8ed2d3bfb28d",
+        "createdAt": "2024-09-25 08:47:41.459",
+        "updatedAt": "2024-09-30 20:50:22.481"
+    },
+    {
+        "id": "6c0cfb3b-2c00-4d89-87b3-76917e75aa6c",
+        "quantity": 517,
+        "originId": "f0f9c94d-1cdd-4f05-a5aa-cd93470b1f11",
+        "createdAt": "2024-09-25 09:40:31.057",
+        "updatedAt": "2024-09-27 20:49:57.806"
+    },
+    {
+        "id": "a4158b24-496b-4da5-bc2b-5cd3bfdecccd",
+        "quantity": 473,
+        "originId": "3a15ea2f-ac58-4668-97aa-7f71e2c04a53",
+        "createdAt": "2024-09-25 09:40:23.326",
+        "updatedAt": "2024-09-26 16:08:06.58"
+    },
+    {
+        "id": "c14f0c31-c99b-4941-80b5-d5a68eb55ca2",
+        "quantity": 209,
+        "originId": "eac99b52-9176-4c2b-83c1-07b935bd3fef",
+        "createdAt": "2024-09-30 11:48:59.684",
+        "updatedAt": "2024-09-30 17:34:54.088"
+    },
+    {
+        "id": "d567127e-6e53-407e-b23c-52f6e78e60fd",
+        "quantity": 1303,
+        "originId": "ff69c084-d0dc-411b-bb1e-3e9ad0db7af2",
+        "createdAt": "2024-09-25 09:40:38.111",
+        "updatedAt": "2024-09-25 09:43:04.31"
+    },
+    {
+        "id": "e80ee0b6-4ae1-4ed5-a9e9-ccb7ab9601ff",
+        "quantity": 411,
+        "originId": "513ccec2-2702-455c-8e17-caac1cdb996b",
+        "createdAt": "2024-09-25 09:30:03.409",
+        "updatedAt": "2024-09-27 18:47:40.787"
+    }
+]

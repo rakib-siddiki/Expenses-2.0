@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum ExpenseType {
+  BUY
+  SELL
+}
+
+model User {
+  id        String     @id @default(uuid())
+  userName  String     @unique
+  email     String?
+  password  String
+  role      Role       @default(USER)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  expenses  Expenses[] // One-to-many relation for user expenses
+}
+
+model Item {
+  id       String     @id @default(uuid())
+  name     String
+  origins  Origin[] // One-to-many relation, each item can have multiple origins
+  Expenses Expenses[] @relation()
+
+  @@index([id, name])
+}
+
+model Origin {
+  id       String     @id @default(uuid())
+  name     String
+  itemId   String
+  item     Item       @relation(fields: [itemId], references: [id], onDelete: Restrict)
+  stock    Stock[] // Automatically delete stock when origin is deleted
+  Expenses Expenses[]
+
+  @@unique([name, itemId])
+  @@index([id, name])
+}
+
+model Stock {
+  id        String   @id @default(uuid())
+  quantity  Decimal  @default(0.0)
+  originId  String
+  origin    Origin   @relation(fields: [originId], references: [id], onDelete: Cascade) // Stock depends on Origin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id])
+}
+
+model Account {
+  id          String     @id @default(uuid())
+  accountName String     @unique
+  balance     Int
+  expenses    Expenses[] // One-to-many relation, each account can have multiple expenses
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([id, accountName])
+}
+
+model Expenses {
+  id        String      @id @default(uuid())
+  userId    String
+  sl_no     Int
+  user      User        @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  type      ExpenseType
+  itemId    String
+  item      Item        @relation(fields: [itemId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  originId  String
+  origin    Origin      @relation(fields: [originId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  stock     Decimal
+  amount  Int
+  avgRate   Decimal     @db.Decimal(10, 2)
+  quantity  Decimal
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  accountId String
+  Accounts  Account     @relation(fields: [accountId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([id, accountId, createdAt, itemId, userId])
+}
