@@ -37,12 +37,23 @@ CREATE TABLE "Origin" (
 -- CreateTable
 CREATE TABLE "Stock" (
     "id" TEXT NOT NULL,
-    "quantity" INTEGER NOT NULL,
+    "quantity" DECIMAL(65,30) NOT NULL DEFAULT 0.0,
     "originId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Stock_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Account" (
+    "id" TEXT NOT NULL,
+    "accountName" TEXT NOT NULL,
+    "balance" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -53,12 +64,13 @@ CREATE TABLE "Expenses" (
     "type" "ExpenseType" NOT NULL,
     "itemId" TEXT NOT NULL,
     "originId" TEXT NOT NULL,
-    "stock" INTEGER NOT NULL,
+    "stock" DECIMAL(65,30) NOT NULL,
     "amount" INTEGER NOT NULL,
     "avgRate" DECIMAL(10,2) NOT NULL,
-    "quantity" INTEGER NOT NULL,
+    "quantity" DECIMAL(65,30) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "accountId" TEXT NOT NULL,
 
     CONSTRAINT "Expenses_pkey" PRIMARY KEY ("id")
 );
@@ -79,7 +91,13 @@ CREATE UNIQUE INDEX "Origin_name_itemId_key" ON "Origin"("name", "itemId");
 CREATE INDEX "Stock_id_idx" ON "Stock"("id");
 
 -- CreateIndex
-CREATE INDEX "Expenses_id_idx" ON "Expenses"("id");
+CREATE UNIQUE INDEX "Account_accountName_key" ON "Account"("accountName");
+
+-- CreateIndex
+CREATE INDEX "Account_id_accountName_idx" ON "Account"("id", "accountName");
+
+-- CreateIndex
+CREATE INDEX "Expenses_id_accountId_createdAt_itemId_userId_idx" ON "Expenses"("id", "accountId", "createdAt", "itemId", "userId");
 
 -- AddForeignKey
 ALTER TABLE "Origin" ADD CONSTRAINT "Origin_itemId_fkey" FOREIGN KEY ("itemId") REFERENCES "Item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -95,3 +113,6 @@ ALTER TABLE "Expenses" ADD CONSTRAINT "Expenses_itemId_fkey" FOREIGN KEY ("itemI
 
 -- AddForeignKey
 ALTER TABLE "Expenses" ADD CONSTRAINT "Expenses_originId_fkey" FOREIGN KEY ("originId") REFERENCES "Origin"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Expenses" ADD CONSTRAINT "Expenses_accountId_fkey" FOREIGN KEY ("accountId") REFERENCES "Account"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
