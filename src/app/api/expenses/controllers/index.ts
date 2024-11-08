@@ -167,8 +167,18 @@ export const onFindExpenses = async () => {
             },
         });
         if (!expenses || expenses.length === 0) return errorResponse('No expenses found', 200);
-
-        return successResponse(expenses, 'Expenses fetched successfully');
+        const serializedExpenses = expenses.map((expense) => {
+            return {
+                ...expense,
+                //NOTE: avgRate is not serializable for Now UnComment when it is needed
+                // avgRate:
+                //     expense.avgRate instanceof Prisma.Decimal
+                //         ? expense.avgRate.toString()
+                //         : expense.avgRate,
+                quantity: Number(expense.quantity),
+            };
+        });
+        return successResponse(serializedExpenses, 'Expenses fetched successfully');
     } catch (error) {
         return errorResponse('Internal server error', 500);
     }
