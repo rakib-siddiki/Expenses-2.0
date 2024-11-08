@@ -20,16 +20,16 @@ export const ExpensesTotalSummary: FC<IExpensesTotalSummary> = ({
                 <TableRow className='*:py-3 font-medium'>
                     {(activeTab.toUpperCase() === sell || activeTab === 'all') && (
                         <>
-                            <TableCell colSpan={3}>Total Sell {totalSell} Tk</TableCell>
                             <TableCell colSpan={3}>
                                 Total Sell Quantity {totalSellQuantity}
                             </TableCell>
+                            <TableCell colSpan={3}>Total Sell {totalSell} Tk</TableCell>
                         </>
                     )}
                     {(activeTab.toUpperCase() === buy || activeTab === 'all') && (
                         <>
-                            <TableCell colSpan={3}>Total Buy {totalBuy} Tk</TableCell>
                             <TableCell colSpan={3}>Total Buy Quantity {totalBuyQuantity}</TableCell>
+                            <TableCell colSpan={3}>Total Buy {totalBuy} Tk</TableCell>
                         </>
                     )}
                     <TableCell colSpan={3} className='text-right'>
