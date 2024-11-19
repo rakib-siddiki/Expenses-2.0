@@ -19,6 +19,7 @@ const fromFields: FormFieldConfig[] = [
             .min(1, { message: 'Please enter your username' })
             .max(255, { message: 'Username should be less than 255 characters' }),
         placeholder: 'Username',
+        value: 'admin',
     },
     {
         name: 'password',
@@ -28,6 +29,7 @@ const fromFields: FormFieldConfig[] = [
             .min(1, { message: 'Please enter your password' })
             .max(255, { message: 'Password should be less than 255 characters' }),
         placeholder: 'Password',
+        value: 'admin',
     },
 ];
 const LoginContainer = () => {
